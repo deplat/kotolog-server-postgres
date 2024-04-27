@@ -6,7 +6,7 @@ POST http://localhost:3000/api/roles HTTP/2
 Content-Type: application/json
 
 {
-  "name": "owner"
+  "name": "user"
 }
 
 ###
@@ -19,11 +19,25 @@ Content-Type: application/json
 {
   "email": "electrohumanic@gmail.com",
   "password": "simple_owner_password",
-  "role": "owner"
+  "roleId": 1
 }
 
 ###
-GET http://localhost:3000/api/
+DELETE http://localhost:3000/api/users/a37be305-6f32-4659-aebc-eec1f47e31d0
+###
+GET http://localhost:3000/api/cats
 
+###
+POST http://localhost:3000/api/cats HTTP/2
+Content-Type: application/json
+
+{
+  "name": "Belka",
+  "sex": "f",
+  "age": "ddd"
+}
+
+###
+DELETE http://localhost:3000/api/cats/578c93b0-04bf-11ef-a9d0-8f9dacce840f
 
 

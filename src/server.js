@@ -4,6 +4,7 @@ import router from "./routes/routes.js"
 import dbCats from "./database.js"
 import models from "./models/models.js"
 import {User} from "./models/User.js";
+import {errorHandler} from "./middleware/ErrorHandlerMiddleware.js";
 
 const PORT = process.env.PORT
 
@@ -11,6 +12,8 @@ const app = express()
 
 app.use(express.json())
 app.use('/api', router)
+
+app.use(errorHandler)
 
 const startServer = async () => {
   try {
