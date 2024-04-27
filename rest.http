@@ -1,0 +1,29 @@
+###
+GET http://localhost:3000/api/roles
+
+###
+POST http://localhost:3000/api/roles HTTP/2
+Content-Type: application/json
+
+{
+  "name": "owner"
+}
+
+###
+GET http://localhost:3000/api/users
+
+###
+POST http://localhost:3000/api/users HTTP/2
+Content-Type: application/json
+
+{
+  "email": "electrohumanic@gmail.com",
+  "password": "simple_owner_password",
+  "role": "owner"
+}
+
+###
+GET http://localhost:3000/api/
+
+
+
