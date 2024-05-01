@@ -2,8 +2,6 @@ import "dotenv/config"
 import express from "express"
 import router from "./routes/routes.js"
 import dbCats from "./database.js"
-import models from "./models/models.js"
-import {User} from "./models/User.js";
 import {errorHandler} from "./middleware/ErrorHandlerMiddleware.js";
 
 const PORT = process.env.PORT

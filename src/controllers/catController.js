@@ -1,12 +1,12 @@
-import {Cat} from "../models/Cat.js";
+import {Album, Cat} from "../models/models.js";
 import {ApiError} from "../error/ApiError.js";
 
-const getAllCats = async (req, res, next ) => {
+const getAllCats = async (req, res, next) => {
   try {
     const params = req.params
     const cats = await Cat.findAll(params)
     return res.json(cats)
-  } catch (err){
+  } catch (err) {
     next(ApiError.internal(err.message))
   }
 }
@@ -23,16 +23,40 @@ const getCat = async (req, res, next) => {
 const createCat = async (req, res, next) => {
   try {
     const {name, sex, age, colors, info} = req.body
-    if (req.files) {
-      const {avatar, photos} = req.files
-    }
     const newCat = await Cat.create({name, sex, age})
     return res.json(newCat)
   } catch (err) {
     next(ApiError.badRequest(err.message))
   }
-
 }
+
+const createCatWithAvatar = async (req, res, next) => {
+  try {
+    const {name, sex, age, colors, info} = req.body
+    const avatar = req.file.path
+    const newCat = await Cat.create({name, sex, age, avatar})
+    return res.json(req.file)
+  } catch (err) {
+    next(ApiError.badRequest(err.message))
+  }
+}
+
+const getCatAlbum = async (req, res, next) => {
+  try {
+    const catId = req.params.id
+    const cat = await Album.findOne({where: { catId } })
+  } catch (err) {
+    next(ApiError.badRequest(err.message))
+  }
+}
+
+const addPhotosToCatAlbum = async(req, res, next) => {
+  const files = req.files
+  let photos = []
+  files.map((file, i )=> photos[i] = file.path )
+  return res.json(photos)
+}
+
 const updateCat = async (req, res) => {
 
 }
@@ -52,6 +76,9 @@ export default {
   getAllCats,
   getCat,
   createCat,
+  createCatWithAvatar,
+  getCatAlbum,
+  addPhotosToCatAlbum,
   updateCat,
   deleteCat
 }

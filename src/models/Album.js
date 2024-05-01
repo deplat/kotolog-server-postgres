@@ -1,7 +1,7 @@
 import dbCats from "../database.js"
 import {DataTypes} from "sequelize"
 
-export const CatAlbum = dbCats.define('cat_album',{
+export const Album = dbCats.define('album',{
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1,

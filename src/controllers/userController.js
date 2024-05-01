@@ -1,5 +1,5 @@
-import {User} from "../models/User.js";
-import {Role} from "../models/Role.js";
+import {User} from "../models/models.js";
+import {Role} from "../models/models.js";
 import {ApiError} from "../error/ApiError.js";
 
 const getAllUsers = async (req, res) => {
