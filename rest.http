@@ -40,4 +40,27 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/api/cats/a27bd090-0648-11ef-99bd-1721d91df967
 
+###
+GET http://localhost:3000/api/colors
 
+###
+POST http://localhost:3000/api/colors
+Content-Type: application/json
+
+{
+  "name": "серый"
+}
+
+###
+PATCH http://localhost:3000/api/colors/c3473ab0-08b6-11ef-8f11-b37f2d06b4b7
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="name"
+Content-Type: text/plain
+
+персиковый
+--WebAppBoundary--
+
+###
+DELETE localhost:3000/api/colors/cb009da0-08b6-11ef-8f11-b37f2d06b4b7

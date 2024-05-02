@@ -4,7 +4,7 @@ import {DataTypes} from "sequelize";
 export const Color = dbCats.define('color', {
   id: {
     type: DataTypes.UUID,
-    defaultValue: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV1,
     allowNull: false,
     primaryKey: true
   },
