@@ -5,7 +5,6 @@ export const Cat = dbCats.define('cat', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1,
-    allowNull: false,
     primaryKey: true
   },
   name: {

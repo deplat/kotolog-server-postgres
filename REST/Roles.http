@@ -1,0 +1,10 @@
+###
+GET http://localhost:3000/api/roles
+
+###
+POST http://localhost:3000/api/roles HTTP/2
+Content-Type: application/json
+
+{
+  "name": "user"
+}

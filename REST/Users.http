@@ -1,0 +1,15 @@
+###
+GET http://localhost:3000/api/users
+
+###
+POST http://localhost:3000/api/users HTTP/2
+Content-Type: application/json
+
+{
+  "email": "electrohumanic@gmail.com",
+  "password": "simple_owner_password",
+  "roleId": 1
+}
+
+###
+DELETE http://localhost:3000/api/users/a37be305-6f32-4659-aebc-eec1f47e31d0

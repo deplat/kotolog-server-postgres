@@ -2,7 +2,7 @@ import {Router} from "express"
 import catController from "../controllers/catController.js"
 import multer from "multer"
 import { v1 as uuidv1 } from "uuid"
-import * as fs from "node:fs";
+import * as fs from "node:fs"
 
 const avatarStorage = multer.diskStorage({
   destination: function(req, file, cb) {

@@ -1,0 +1,18 @@
+###
+GET http://localhost:3000/api/cats
+
+###
+GET http://localhost:3000/api/cats/c9743b60-0931-11ef-87e3-e906bd3031f1/album
+
+###
+POST http://localhost:3000/api/cats HTTP/2
+Content-Type: application/json
+
+{
+  "name": "Belka",
+  "sex": "f",
+  "age": 13
+}
+
+###
+DELETE http://localhost:3000/api/cats/a27bd090-0648-11ef-99bd-1721d91df967
