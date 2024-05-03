@@ -1,6 +1,5 @@
 import {Color} from "../models/Color.js";
 import {ApiError} from "../error/ApiError.js";
-import err from "multer/lib/multer-error.js";
 
 const getAllColors = async (req, res, next) => {
     try {
@@ -27,11 +26,7 @@ const updateColor = async (req, res, next) => {
         const {name} = req.body
         const colorToUpdate = await Color.findByPk(id)
         const updatedColor = await colorToUpdate.update({name})
-        const response = {
-            id: updatedColor.id,
-            name: updatedColor.name
-        }
-         return res.json(response)
+        return res.json(updatedColor)
     } catch (err) {
         next(ApiError.badRequest(err.message))
     }
@@ -45,10 +40,7 @@ const deleteColor = async (req, res, next) => {
             id,
             message: 'Deleted successfully'
         })
-    } catch {
-        err
-    }
-    {
+    } catch (err) {
         next(ApiError.badRequest(err.message))
     }
 }

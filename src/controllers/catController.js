@@ -1,6 +1,5 @@
 import {Album, Cat} from "../models/models.js";
 import {ApiError} from "../error/ApiError.js";
-import err from "multer/lib/multer-error.js";
 
 const getAllCats = async (req, res, next) => {
     try {
@@ -8,7 +7,7 @@ const getAllCats = async (req, res, next) => {
         const cats = await Cat.findAll(params)
         return res.json(cats)
     } catch (err) {
-        next(ApiError.internal(err.message))
+        next(ApiError.badRequest(err.message))
     }
 }
 const getCat = async (req, res, next) => {
@@ -24,6 +23,7 @@ const getCat = async (req, res, next) => {
 const createCat = async (req, res, next) => {
     try {
         const {name, sex, age, colors, info} = req.body
+        if
         const newCat = await Cat.create({name, sex, age})
         return res.json(newCat)
     } catch (err) {
