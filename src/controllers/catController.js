@@ -23,7 +23,6 @@ const getCat = async (req, res, next) => {
 const createCat = async (req, res, next) => {
     try {
         const {name, sex, age, colors, info} = req.body
-        if
         const newCat = await Cat.create({name, sex, age})
         return res.json(newCat)
     } catch (err) {
