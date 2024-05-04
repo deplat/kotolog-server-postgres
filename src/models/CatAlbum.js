@@ -1,7 +1,7 @@
-import dbCats from "../database.js"
+import dbKotolog from "../database.js"
 import {DataTypes} from "sequelize"
 
-export const Album = dbCats.define('album',{
+export const CatAlbum = dbKotolog.define('album',{
   catId: {
     type: DataTypes.UUID,
     allowNull: false,
