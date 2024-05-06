@@ -1,7 +1,7 @@
-import dbCats from "../database.js"
+import dbKotolog from "../database.js"
 import {DataTypes} from "sequelize"
 
-export const Cat = dbCats.define('cat', {
+export const Cat = dbKotolog.define('cat', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1,
