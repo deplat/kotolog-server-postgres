@@ -1,14 +1,13 @@
-import dbCats from "../database.js"
+import dbKotolog from "../database.js"
 import {DataTypes} from "sequelize"
 import bcrypt from "bcryptjs"
 
 const saltRounds = 10
 
-export const User = dbCats.define('user', {
+export const User = dbKotolog.define('user', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
     primaryKey: true,
   },
   email: {
