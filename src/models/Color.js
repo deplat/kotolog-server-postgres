@@ -9,6 +9,7 @@ export const Color = dbKotolog.define('color', {
   },
   name: {
     type: DataTypes.STRING,
-    unique: true
+    unique: true,
+    allowNull: false
   }
 })
