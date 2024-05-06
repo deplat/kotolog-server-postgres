@@ -9,7 +9,8 @@ export const Cat = dbCats.define('cat', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: false
   },
   sex: {
     type: DataTypes.ENUM('f', 'm')
