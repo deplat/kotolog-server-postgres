@@ -1,7 +1,7 @@
-import dbCats from "../database.js"
+import dbKotolog from "../database.js"
 import {DataTypes} from "sequelize"
 
-export const Role = dbCats.define('role', {
+export const Role = dbKotolog.define('role', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
