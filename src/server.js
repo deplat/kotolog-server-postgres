@@ -1,7 +1,7 @@
 import "dotenv/config"
 import express from "express"
 import router from "./routes/routes.js"
-import dbCats from "./database.js"
+import dbKotolog from "./database.js"
 import {errorHandler} from "./middleware/ErrorHandlerMiddleware.js";
 
 const PORT = process.env.PORT
@@ -15,8 +15,8 @@ app.use(errorHandler)
 
 const startServer = async () => {
   try {
-    await dbCats.authenticate()
-    await dbCats.sync()
+    await dbKotolog.authenticate()
+    await dbKotolog.sync()
 
     app.listen(PORT, () =>
       console.log(`Server is running on http://localhost:${PORT}`))
