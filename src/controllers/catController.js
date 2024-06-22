@@ -1,10 +1,11 @@
-import {CatAlbum, Cat} from "../models/models.js";
+import {Cat, CatAlbum, CatInfo} from "../models/models.js";
 import {ApiError} from "../error/ApiError.js";
 
 const getAllCats = async (req, res, next) => {
     try {
-        const params = req.params
-        const cats = await Cat.findAll(params)
+        //const params = req.params
+        const filter = {}
+        const cats = await Cat.findAll(filter)
         return res.json(cats)
     } catch (err) {
         next(ApiError.badRequest(err.message))
@@ -24,9 +25,15 @@ const createCat = async (req, res, next) => {
     try {
         const {name, sex, age, colors, info} = req.body
         if (colors) {
-
+            // TODO
         }
         const newCat = await Cat.create({name, sex, age})
+        if (info) {
+            /* Try to include 'info' from 'cat_info' into Cat.create()
+             * But first check if it worth that :)
+             */
+            await CatInfo.create({catId: newCat.id})
+        }
         return res.json(newCat)
     } catch (err) {
         next(ApiError.badRequest(err.message))
@@ -38,6 +45,16 @@ const createCatWithAvatar = async (req, res, next) => {
         const {name, sex, age, colors, info} = req.body
         const avatar = req.file.path
         const newCat = await Cat.create({name, sex, age, avatar})
+        if (info) {
+            /* Try to include 'info' from 'cat_info' into Cat.create()
+             * But first check if it worth that :)
+             */
+            await CatInfo.create({catId: newCat.id})
+        }
+        if (colors) {
+            // TODO
+        }
+
         return res.json(newCat)
     } catch (err) {
         next(ApiError.badRequest(err.message))
@@ -68,15 +85,21 @@ const addPhotosToCatAlbum = async (req, res, next) => {
 }
 
 const updateCat = async (req, res) => {
-
+    /*
+     *    TODO
+     *
+     */
 }
 
-const deleteCat = async (req, res, next) => {
+const deleteCatAndCatAlbum = async (req, res, next) => {
     try {
         const id = req.params.id
+        const catId = id // Fix duplication?
         const catToDelete = await Cat.findByPk(id)
+        const catAlbumToDelete = await CatAlbum.findByPk(catId)
+        await catAlbumToDelete.destroy()
         await catToDelete.destroy()
-        return res.json({message: 'Cat deleted successfully', data: catToDelete})
+        return res.json({message: 'Cat deleted successfully'})
     } catch (err) {
         next(ApiError.badRequest(err.message))
     }
@@ -90,5 +113,5 @@ export default {
     getCatAlbum,
     addPhotosToCatAlbum,
     updateCat,
-    deleteCat
+    deleteCatAndCatAlbum
 }
