@@ -1,31 +1,6 @@
 import {Router} from "express"
 import catController from "../controllers/catController.js"
-import multer from "multer"
-import { v1 as uuidv1 } from "uuid"
-import * as fs from "node:fs"
-
-const avatarStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'static/avatars')
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${file.fieldname}-${uuidv1()}`)
-  }
-})
-
-const albumStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const path = `./static/albums/${req.params.id}`
-    fs.mkdirSync(path, {recursive: true})
-    cb(null, path)
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname+'-'+uuidv1())
-  }
-})
-
-const avatarUpload = multer({storage: avatarStorage}).single('avatar')
-const albumUpload = multer({storage: albumStorage}).array('photos',20)
+import {albumUpload, avatarUpload} from "../middleware/FileUploaderMiddleware.js";
 
 
 export default Router()
@@ -40,5 +15,5 @@ export default Router()
   .patch('/:id', catController.updateCat)
   //.patch('/:id/avatar', catController.updateCatAvatar)
 
-  .delete('/:id', catController.deleteCat)
+  .delete('/:id', catController.deleteCatAndCatAlbum)
   //.delete(':id/avatar', catController.deleteCatAvatar)

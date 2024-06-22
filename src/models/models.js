@@ -23,5 +23,5 @@ export {
   Role,
   Cat,
   CatAlbum,
-    CatInfo
+  CatInfo
 }
