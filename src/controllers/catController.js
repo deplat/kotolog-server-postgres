@@ -32,7 +32,7 @@ const createCat = async (req, res, next) => {
             /* Try to include 'info' from 'cat_info' into Cat.create()
              * But first check if it worth that :)
              */
-            await CatInfo.create({catId: newCat.id})
+            await CatInfo.create({catId: newCat.id, info})
         }
         return res.json(newCat)
     } catch (err) {
