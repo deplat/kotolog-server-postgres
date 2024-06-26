@@ -9,10 +9,10 @@ const PORT = process.env.PORT
 
 const app = express()
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 app.use('/api', router)
-
+app.use('/public', express.static('public'))
 app.use(errorHandler)
 
 const startServer = async () => {

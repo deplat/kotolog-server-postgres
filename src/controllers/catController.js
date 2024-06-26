@@ -43,7 +43,7 @@ const createCat = async (req, res, next) => {
 const createCatWithAvatar = async (req, res, next) => {
     try {
         const {name, sex, age, colors, info} = req.body
-        const avatar = req.file.path
+        const avatar = req.file.filename
         const newCat = await Cat.create({name, sex, age, avatar})
         if (info) {
             /* Try to include 'info' from 'cat_info' into Cat.create()
