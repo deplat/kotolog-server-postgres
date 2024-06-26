@@ -12,7 +12,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api', router)
-app.use('/public', express.static('public'))
+app.use('/avatar', express.static('public/avatar'))
+app.use('/album', express.static('public/album'))
 app.use(errorHandler)
 
 const startServer = async () => {
