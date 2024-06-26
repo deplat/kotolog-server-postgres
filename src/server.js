@@ -19,7 +19,7 @@ app.use(errorHandler)
 const startServer = async () => {
   try {
     await dbKotolog.authenticate()
-    await dbKotolog.sync()
+        // await dbKotolog.sync()
 
     app.listen(PORT, () =>
       console.log(`Server is running on http://localhost:${PORT}`))
